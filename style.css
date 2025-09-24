@@ -1,0 +1,265 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: url("images/bg.jpg") no-repeat center center/cover;
+  color: white;
+  line-height: 1.6;
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Overlay for all pages */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* darken */
+  backdrop-filter: blur(5px); /* blur effect */
+  z-index: -1;
+}
+
+/* Header */
+header {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #f39c12;
+  transition: transform 0.3s;
+}
+
+header .logo:hover {
+  transform: scale(1.1);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s, transform 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  color: #f39c12;
+  transform: translateY(-3px);
+}
+
+/* Hero Section (Home) */
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.hero h2 {
+  font-size: 40px;
+  margin-bottom: 20px;
+  animation: slideDown 1.5s ease;
+}
+
+.hero p {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.btn {
+  padding: 12px 25px;
+  background: #f39c12;
+  color: black;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.btn:hover {
+  background: #d35400;
+  transform: scale(1.1);
+}
+
+/* About, Menu, Contact sections */
+section {
+  padding: 100px 20px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+section h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+section p {
+  font-size: 18px;
+  max-width: 800px;
+  margin: 0 auto 20px;
+}
+
+/* Contact form */
+.contact form {
+  max-width: 500px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact input,
+.contact textarea {
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.contact textarea {
+  resize: none;
+  height: 120px;
+}
+
+.contact .btn {
+  padding: 12px;
+  background: #f39c12;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact .btn:hover {
+  background: #d35400;
+  transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.8);
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  margin-top: 50px;
+  z-index: 1;
+}
+
+/* Horizontal Menu (sideways, not cards) */
+.menu-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto; /* horizontal scroll if needed */
+  gap: 40px;
+  padding: 20px;
+  scroll-behavior: smooth;
+  align-items: center;
+}
+
+.menu-item {
+  display: flex;
+  flex-direction: column; /* image on top, text below */
+  align-items: center;
+  min-width: 250px; /* keeps consistent size */
+}
+
+.menu-item img {
+  width: 250px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.menu-item h3 {
+  margin: 5px 0;
+  font-size: 18px;
+}
+
+.price {
+  display: block;
+  margin-top: 5px;
+  font-weight: bold;
+  color: #f39c12;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+
+/* Price tab/button */
+.price-tab {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #f39c12;
+  color: black;
+  font-weight: bold;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.2s;
+  margin-top: 5px;
+}
+
+.price-tab:hover {
+  background: #d35400;
+  transform: scale(1.05);
+}
+
+
+/* Price tab button */
+.price-tab {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #f39c12;
+  color: black;
+  font-weight: bold;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  margin-top: 5px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.price-tab:hover {
+  background: #d35400;
+  transform: scale(1.05);
+}
+
+.price-tab.selected {
+  background: #27ae60;
+  color: white;
+}
+

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Café Connect | Menu</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Inline style additions for menu-page only */
+
+    /* Horizontal Menu Grid */
+    .menu-grid {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 20px;
+      scroll-behavior: smooth;
+    }
+
+    .menu-item {
+      flex: 0 0 auto;
+      text-align: center;
+    }
+
+    .menu-item img {
+      width: 250px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .menu-item h3 {
+      margin: 8px 0 5px;
+      font-size: 18px;
+    }
+
+    .price-tab {
+      cursor: pointer;
+      display: inline-block;
+      background: #f39c12;
+      color: black;
+      padding: 5px 10px;
+      margin: 5px;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .price-tab.selected {
+      background: #d35400;
+      transform: scale(1.05);
+    }
+
+    /* Payment form styling */
+    .payment-section {
+      max-width: 500px;
+      margin: 30px auto;
+      background: rgba(0,0,0,0.7);
+      padding: 20px;
+      border-radius: 10px;
+      text-align: left;
+    }
+
+    .payment-section h2 {
+      color: #f39c12;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .payment-section label {
+      display: block;
+      margin-top: 10px;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .payment-section input,
+    .payment-section select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .payment-section .btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: #27ae60;
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.3s, transform 0.2s;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .payment-section .btn:hover {
+      background: #1e8449;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body class="menu-page">
+  <!-- Header (updated like Café Bliss) -->
+  <header>
+    <h1 class="logo">☕ Café Connect</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="menu.html" class="active">Menu</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Menu Section -->
+  <section class="menu">
+    <h1>Our Menu</h1>
+    <p class="subtitle">Freshly brewed coffee, delicious pastries, and healthy meals.</p>
+
+    <div class="menu-grid">
+      <div class="menu-item">
+        <img src="images/coffee.jpg" alt="Coffee">
+        <h3>Classic Coffee</h3>
+        <span class="price-tab" data-price="250">ksh 250</span>
+      </div>
+
+      <div class="menu-item">
+        <img src="images/cappuccino.jpg" alt="Cappuccino">
+        <h3>Cappuccino</h3>
+        <span class="price-tab" data-price="300">ksh 300</span>
+      </div>
+
+      <div class="menu-item">
+        <img src="images/latte.jpg" alt="Latte">
+        <h3>Latte</h3>
+        <span class="price-tab" data-price="300">ksh 300</span>
+      </div>
+
+      <div class="menu-item">
+        <img src="images/croissant.jpg" alt="Croissant">
+        <h3>Butter Croissant</h3>
+        <span class="price-tab" data-price="600">ksh 600</span>
+      </div>
+
+      <div class="menu-item">
+        <img src="images/salad.jpg" alt="Salad">
+        <h3>Fresh Salad</h3>
+        <span class="price-tab" data-price="1000">ksh 1000</span>
+      </div>
+    </div>
+
+    <!-- Payment Form -->
+    <div class="payment-section">
+      <h2>Payment Details</h2>
+      <form>
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+        <label for="method">Payment Method</label>
+        <select id="method" name="method" required>
+          <option value="">Select Method</option>
+          <option value="mpesa">Mpesa</option>
+          <option value="card">Credit/Debit Card</option>
+          <option value="paypal">PayPal</option>
+        </select>
+
+        <label for="amount">Amount (ksh)</label>
+        <input type="text" id="amount" name="amount" readonly>
+
+        <button type="submit" class="btn">Pay Now</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Café Connect. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Price selection logic
+    const priceTabs = document.querySelectorAll('.price-tab');
+    const amountInput = document.getElementById('amount');
+    let total = 0;
+
+    priceTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const price = parseInt(tab.dataset.price);
+        if (tab.classList.contains('selected')) {
+          tab.classList.remove('selected');
+          total -= price;
+        } else {
+          tab.classList.add('selected');
+          total += price;
+        }
+        amountInput.value = total; // update payment amount
+      });
+    });
+  </script>
+</body>
+</html>
